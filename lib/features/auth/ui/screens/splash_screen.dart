@@ -1,10 +1,32 @@
-import 'package:ecommerce_project/features/app/assetspath.dart';
 import 'package:ecommerce_project/features/app/colors.dart';
+import 'package:ecommerce_project/features/auth/ui/screens/email_verification_scrren.dart';
+import 'package:ecommerce_project/features/auth/ui/widgets/app_name_text_widget.dart';
+import 'package:ecommerce_project/features/auth/ui/widgets/app_square_logo_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+  static const String routeName = "/splash-screen";
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  Future<void> _navigateToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 3));
+    Get.offNamed(EmailVerificationScreen.routeName);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _navigateToNextScreen();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,16 +35,42 @@ class SplashScreen extends StatelessWidget {
       body: Column(
         children: [
           const Spacer(),
-          Center(
-            child: SvgPicture.asset(
-              Assetspath.appSquarelogo,
-              width: 30,
-              height: 30,
+          const AppLogoWidget(),
+          const AppNameTextWidget(),
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "E-COMMERCE  ",
+                  style: GoogleFonts.montserrat(
+                    letterSpacing: 1.5.sp,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w400,
+                    color: SullionAppColor.primaryBlackColor,
+                  ),
+                ),
+                TextSpan(
+                  text: "STORE",
+                  style: GoogleFonts.montserrat(
+                    letterSpacing: 1.5.sp,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                    color: SullionAppColor.primaryBlackColor,
+                  ),
+                ),
+              ],
             ),
           ),
           const Spacer(),
+          const CircularProgressIndicator(),
+          const Gap(20),
+          const Text(
+            "version 1.0.0",
+          ),
+          const Gap(30),
         ],
       ),
     );
   }
 }
+
