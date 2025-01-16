@@ -1,3 +1,4 @@
+import 'package:ecommerce_project/features/app/app_constants.dart';
 import 'package:ecommerce_project/features/app/colors.dart';
 import 'package:ecommerce_project/features/auth/ui/screens/email_verification_scrren.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_name_text_widget.dart';
@@ -18,7 +19,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Future<void> _navigateToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(
+        const Duration(seconds: SullionAppConstants.splashScreenTimeoutInSecs));
     Get.offNamed(EmailVerificationScreen.routeName);
   }
 
@@ -65,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
           const CircularProgressIndicator(),
           const Gap(20),
           const Text(
-            "version 1.0.0",
+            SullionAppConstants.appVersion,
           ),
           const Gap(30),
         ],
@@ -73,4 +75,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-

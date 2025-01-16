@@ -1,4 +1,5 @@
 import 'package:ecommerce_project/features/app/sullion_theme.dart';
+import 'package:ecommerce_project/features/auth/ui/screens/email_otp_verify.dart';
 import 'package:ecommerce_project/features/auth/ui/screens/email_verification_scrren.dart';
 import 'package:ecommerce_project/features/auth/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -35,5 +36,6 @@ class _SullionAppState extends State<SullionApp> {
     SplashScreen.routeName: (context) => const SplashScreen(),
     EmailVerificationScreen.routeName: (context) =>
         const EmailVerificationScreen(),
+    EmailOtpVerify.routeName: (context) => const EmailOtpVerify(),
   };
 }
