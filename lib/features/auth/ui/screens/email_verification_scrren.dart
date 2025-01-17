@@ -1,4 +1,4 @@
-import 'package:ecommerce_project/features/app/colors.dart';
+import 'package:ecommerce_project/app/colors.dart';
 import 'package:ecommerce_project/features/auth/ui/screens/email_otp_verify.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_square_logo_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +18,6 @@ class EmailVerificationScreen extends StatefulWidget {
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +84,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   void _navigateToNextScreen() {
     // * Navigate to the next screen
-    Get.offNamed(EmailOtpVerify.routeName);
+    Get.toNamed(EmailOtpVerify.routeName);
   }
 
   @override

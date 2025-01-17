@@ -1,7 +1,7 @@
 import 'dart:async';
-
-import 'package:ecommerce_project/features/app/app_constants.dart';
-import 'package:ecommerce_project/features/app/colors.dart';
+import 'package:ecommerce_project/app/app_constants.dart';
+import 'package:ecommerce_project/app/colors.dart';
+import 'package:ecommerce_project/features/auth/ui/screens/complete_profile_screen.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_square_logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,9 +20,9 @@ class EmailOtpVerify extends StatefulWidget {
 class _EmailOtpVerifyState extends State<EmailOtpVerify> {
   final TextEditingController _otpController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Timer? timer;
+  late Timer timer;
   final RxInt _resendCodeInSecs = SullionAppConstants.resendCodeInSecs.obs;
-  final RxBool _isResendCodeEnabled = true.obs;
+  final RxBool _isResendCodeEnabled = false.obs;
 
   @override
   void initState() {
@@ -30,13 +30,19 @@ class _EmailOtpVerifyState extends State<EmailOtpVerify> {
     _resendCountDown();
   }
 
+  void _moveToNextScreen() {
+    if (_formKey.currentState!.validate()) {
+      Get.offNamedUntil(CompleteProfileScreen.routeName, (route) => false);
+    }
+  }
+
   void _resendCountDown() {
     _resendCodeInSecs.value = SullionAppConstants.resendCodeInSecs;
-    _isResendCodeEnabled.value = false;
+    _isResendCodeEnabled.value = true;
     timer = Timer.periodic(const Duration(seconds: 1), (t) {
       if (_resendCodeInSecs.value == 0) {
         t.cancel();
-        _isResendCodeEnabled.value = true;
+        _isResendCodeEnabled.value = false;
       } else {
         _resendCodeInSecs.value--;
       }
@@ -69,10 +75,12 @@ class _EmailOtpVerifyState extends State<EmailOtpVerify> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Please enter the OTP code";
+                    } else if (value.length < SullionAppConstants.otpLength) {
+                      return "Please enter a valid OTP code";
                     }
                     return null;
                   },
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  // autovalidateMode: AutovalidateMode.onUserInteraction,
                   appContext: context,
                   controller: _otpController,
                   length: SullionAppConstants.otpLength,
@@ -83,7 +91,9 @@ class _EmailOtpVerifyState extends State<EmailOtpVerify> {
                 ),
                 Gap(15.h),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _moveToNextScreen();
+                  },
                   child: Text(
                     "Next",
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -115,7 +125,7 @@ class _EmailOtpVerifyState extends State<EmailOtpVerify> {
 
                 // * RESEND OTP CODE BUTTON
                 Obx(() => Visibility(
-                      visible: _isResendCodeEnabled.value,
+                      visible: !_isResendCodeEnabled.value,
                       child: TextButton(
                         style:
                             Theme.of(context).textButtonTheme.style?.copyWith(),
@@ -157,8 +167,12 @@ class _EmailOtpVerifyState extends State<EmailOtpVerify> {
   }
 
   @override
-  void dispose() {
-    _otpController.dispose();
+  void dispose() async {
+    // Cancel the timer to ensure no callbacks fire after disposal
+    if (timer.isActive) {
+      timer.cancel();
+    }
+
     super.dispose();
   }
 }

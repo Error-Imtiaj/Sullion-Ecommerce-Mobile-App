@@ -1,5 +1,5 @@
-import 'package:ecommerce_project/features/app/app_constants.dart';
-import 'package:ecommerce_project/features/app/colors.dart';
+import 'package:ecommerce_project/app/app_constants.dart';
+import 'package:ecommerce_project/app/colors.dart';
 import 'package:ecommerce_project/features/auth/ui/screens/email_verification_scrren.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_name_text_widget.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_square_logo_widget.dart';
