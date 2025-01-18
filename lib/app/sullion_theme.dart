@@ -12,6 +12,8 @@ class SullionAppThemeData {
         bodyMedium: GoogleFonts.montserrat(), // font size 14
         titleLarge: GoogleFonts.montserrat(
             fontSize: 30, fontWeight: FontWeight.bold), // font size 30
+        titleMedium: GoogleFonts.montserrat(
+            fontSize: 20, fontWeight: FontWeight.bold), // font size 20
       ),
 
       // * PROGREESS INDICATOR THEME DATA

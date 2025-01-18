@@ -54,7 +54,7 @@ class _EmailOtpVerifyState extends State<EmailOtpVerify> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0).w,
+          padding: const EdgeInsets.all(SullionAppConstants.scaffoldBodyPaddingConst).w,
           child: Form(
             key: _formKey,
             child: Column(

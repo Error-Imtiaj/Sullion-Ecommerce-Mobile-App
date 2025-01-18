@@ -1,3 +1,4 @@
+import 'package:ecommerce_project/app/app_constants.dart';
 import 'package:ecommerce_project/app/colors.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_square_logo_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.all(20.0).w,
+      padding:
+          const EdgeInsets.all(SullionAppConstants.scaffoldBodyPaddingConst).w,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -150,10 +152,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     );
   }
 
-
   @override
   void dispose() {
-    // TODO: implement dispose
+
     _firstNameController.dispose();
     _lastNameController.dispose();
     _mobileController.dispose();

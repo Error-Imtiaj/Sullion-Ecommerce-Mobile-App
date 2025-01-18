@@ -1,3 +1,4 @@
+import 'package:ecommerce_project/app/app_constants.dart';
 import 'package:ecommerce_project/app/colors.dart';
 import 'package:ecommerce_project/features/auth/ui/screens/email_otp_verify.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_square_logo_widget.dart';
@@ -24,7 +25,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0).w,
+          padding: const EdgeInsets.all(SullionAppConstants.scaffoldBodyPaddingConst).w,
           child: Form(
             key: formkey,
             child: Column(
