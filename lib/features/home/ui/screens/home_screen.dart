@@ -55,8 +55,41 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressedViewAll: () {},
               ),
               Gap(16.h),
-              // TODO INCOMPLETE PRODUCT WIDGET
-              ProductWidget()
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: _getProductCollection(),
+                ),
+              ),
+              Gap(16.h),
+
+              // * SPECIAL SECTION
+              HomeScreenTitle(
+                title: 'Special',
+                onPressedViewAll: () {},
+              ),
+              Gap(16.h),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: _getProductCollection(),
+                ),
+              ),
+              Gap(16.h),
+
+              // * NEW SECTION
+              HomeScreenTitle(
+                title: 'New',
+                onPressedViewAll: () {},
+              ),
+              Gap(16.h),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: _getProductCollection(),
+                ),
+              ),
+              Gap(16.h),
             ],
           ),
         ),
@@ -68,6 +101,14 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Widget> collectionList = [];
     for (int i = 0; i < 5; i++) {
       collectionList.add(const SingleCollectionWidget());
+    }
+    return collectionList;
+  }
+
+  List<Widget> _getProductCollection() {
+    List<Widget> collectionList = [];
+    for (int i = 0; i < 5; i++) {
+      collectionList.add(const ProductWidget());
     }
     return collectionList;
   }

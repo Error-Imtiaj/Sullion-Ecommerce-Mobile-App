@@ -20,7 +20,7 @@ class _SullionAppCarosalSliderState extends State<SullionAppCarosalSlider> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: 200.0,
+            height: 170.0,
             viewportFraction: 1,
             onPageChanged: (index, reason) {
               _selectedIndex.value = index;

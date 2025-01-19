@@ -1,3 +1,4 @@
+import 'package:ecommerce_project/app/app_constants.dart';
 import 'package:ecommerce_project/app/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,13 +14,15 @@ class SingleCollectionWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(right: 16).w,
+          margin: const EdgeInsets.only(
+                  right: SullionAppConstants.gapBetweenCollections)
+              .w,
           height: 100.h,
           width: 100.w,
           decoration: BoxDecoration(
               color: SullionAppColor.iconButtonBackgroundColor,
-              borderRadius: BorderRadius.circular(8)),
-          child: Icon(
+              borderRadius: BorderRadius.circular(8).r),
+          child: const Icon(
             Icons.computer,
             size: 60,
           ),
