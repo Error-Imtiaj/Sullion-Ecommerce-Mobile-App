@@ -1,4 +1,5 @@
 import 'package:ecommerce_project/app/colors.dart';
+import 'package:ecommerce_project/features/category/ui/screens/category_page.dart';
 import 'package:ecommerce_project/features/common/ui/controllers/main_nav_button_controller.dart';
 import 'package:ecommerce_project/features/home/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class SullionAppBottomNavbar extends StatefulWidget {
 class _SullionAppBottomNavbarState extends State<SullionAppBottomNavbar> {
   final List _screen = [
     const HomeScreen(),
-    const HomeScreen(),
+    const CategoryPage(),
     const HomeScreen(),
     const HomeScreen(),
   ];

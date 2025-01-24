@@ -20,8 +20,9 @@ class SingleCollectionWidget extends StatelessWidget {
           height: 100.h,
           width: 100.w,
           decoration: BoxDecoration(
-              color: SullionAppColor.iconButtonBackgroundColor,
-              borderRadius: BorderRadius.circular(8).r),
+            color: SullionAppColor.iconButtonBackgroundColor,
+            borderRadius: BorderRadius.circular(8).r,
+          ),
           child: const Icon(
             Icons.computer,
             size: 60,

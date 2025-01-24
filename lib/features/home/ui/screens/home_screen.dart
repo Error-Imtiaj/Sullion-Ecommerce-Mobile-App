@@ -1,4 +1,5 @@
 import 'package:ecommerce_project/app/app_constants.dart';
+import 'package:ecommerce_project/features/common/ui/controllers/main_nav_button_controller.dart';
 import 'package:ecommerce_project/features/home/ui/widgets/carusal_slider.dart';
 import 'package:ecommerce_project/features/home/ui/widgets/product_widget.dart';
 import 'package:ecommerce_project/features/home/ui/widgets/search_bar.dart';
@@ -7,6 +8,7 @@ import 'package:ecommerce_project/features/home/ui/widgets/sullion_app_bar.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import '../widgets/home_screen_title.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,7 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
               // * COLLECTION SECTION
               HomeScreenTitle(
                 title: 'Collections',
-                onPressedViewAll: () {},
+                onPressedViewAll: () {
+                  Get.find<MainNavButtonController>().moveToCategory();
+                },
               ),
               Gap(16.h),
               SingleChildScrollView(

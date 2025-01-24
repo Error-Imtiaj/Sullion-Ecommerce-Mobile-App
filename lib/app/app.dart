@@ -4,6 +4,7 @@ import 'package:ecommerce_project/features/auth/ui/screens/complete_profile_scre
 import 'package:ecommerce_project/features/auth/ui/screens/email_otp_verify.dart';
 import 'package:ecommerce_project/features/auth/ui/screens/email_verification_scrren.dart';
 import 'package:ecommerce_project/features/auth/ui/screens/splash_screen.dart';
+import 'package:ecommerce_project/features/category/ui/screens/category_page.dart';
 
 import 'package:ecommerce_project/features/common/ui/screens/sullion_app_bottom_navbar.dart';
 import 'package:ecommerce_project/features/home/ui/screens/home_screen.dart';
@@ -47,5 +48,6 @@ class _SullionAppState extends State<SullionApp> {
     SullionAppBottomNavbar.routeName: (context) =>
         const SullionAppBottomNavbar(),
     HomeScreen.routeName: (context) => const HomeScreen(),
+    CategoryPage.routeName: (context) => const CategoryPage(),
   };
 }

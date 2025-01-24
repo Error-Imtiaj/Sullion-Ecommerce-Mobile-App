@@ -9,4 +9,16 @@ class MainNavButtonController extends GetxController {
     _selectedIndex.value = index;
     update();
   }
+
+  // * MOVE TO HOME SCREEN
+  void moveToHome() {
+    _selectedIndex.value = 0;
+    update();
+  }
+
+  // * MOVE TO CATEGORY SCREEN
+  void moveToCategory() {
+    _selectedIndex.value = 1;
+    update();
+  }
 }
