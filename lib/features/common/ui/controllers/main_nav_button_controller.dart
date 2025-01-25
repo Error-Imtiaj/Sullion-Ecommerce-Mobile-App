@@ -21,4 +21,16 @@ class MainNavButtonController extends GetxController {
     _selectedIndex.value = 1;
     update();
   }
+
+  // * MOVE TO CART SCREEN
+  void moveToCart() {
+    _selectedIndex.value = 2;
+    update();
+  }
+
+  // * MOVE TO WISHLIST SCREEN
+  void moveToWishlist() {
+    _selectedIndex.value = 3;
+    update();
+  }
 }

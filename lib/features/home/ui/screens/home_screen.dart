@@ -1,9 +1,9 @@
 import 'package:ecommerce_project/app/app_constants.dart';
 import 'package:ecommerce_project/features/common/ui/controllers/main_nav_button_controller.dart';
 import 'package:ecommerce_project/features/home/ui/widgets/carusal_slider.dart';
-import 'package:ecommerce_project/features/home/ui/widgets/product_widget.dart';
+import 'package:ecommerce_project/features/common/ui/widgets/product_widget.dart';
 import 'package:ecommerce_project/features/home/ui/widgets/search_bar.dart';
-import 'package:ecommerce_project/features/home/ui/widgets/single_collection_widget.dart';
+import 'package:ecommerce_project/features/common/ui/widgets/single_collection_widget.dart';
 import 'package:ecommerce_project/features/home/ui/widgets/sullion_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,78 +23,83 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const SullionAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: SullionAppConstants.scaffoldBodyPaddingConst),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ProductSearchBar(
-                controller: searchController,
-              ),
-              Gap(24.h),
-              const SullionAppCarosalSlider(),
-              Gap(24.h),
-              // * COLLECTION SECTION
-              HomeScreenTitle(
-                title: 'Collections',
-                onPressedViewAll: () {
-                  Get.find<MainNavButtonController>().moveToCategory();
-                },
-              ),
-              Gap(16.h),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: _getCollection(),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: const SullionAppBar(),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: SullionAppConstants.scaffoldBodyPaddingConst),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ProductSearchBar(
+                  controller: searchController,
                 ),
-              ),
-              Gap(16.h),
+                Gap(24.h),
+                const SullionAppCarosalSlider(),
+                Gap(24.h),
+                // * COLLECTION SECTION
+                HomeScreenTitle(
+                  title: 'Collections',
+                  onPressedViewAll: () {
+                    Get.find<MainNavButtonController>().moveToCategory();
+                  },
+                ),
+                Gap(16.h),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: _getCollection(),
+                  ),
+                ),
+                Gap(16.h),
 
-              // * POPULAR SECTION
-              HomeScreenTitle(
-                title: 'Popular',
-                onPressedViewAll: () {},
-              ),
-              Gap(16.h),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: _getProductCollection(),
+                // * POPULAR SECTION
+                HomeScreenTitle(
+                  title: 'Popular',
+                  onPressedViewAll: () {},
                 ),
-              ),
-              Gap(16.h),
+                Gap(16.h),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: _getProductCollection(),
+                  ),
+                ),
+                Gap(16.h),
 
-              // * SPECIAL SECTION
-              HomeScreenTitle(
-                title: 'Special',
-                onPressedViewAll: () {},
-              ),
-              Gap(16.h),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: _getProductCollection(),
+                // * SPECIAL SECTION
+                HomeScreenTitle(
+                  title: 'Special',
+                  onPressedViewAll: () {},
                 ),
-              ),
-              Gap(16.h),
+                Gap(16.h),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: _getProductCollection(),
+                  ),
+                ),
+                Gap(16.h),
 
-              // * NEW SECTION
-              HomeScreenTitle(
-                title: 'New',
-                onPressedViewAll: () {},
-              ),
-              Gap(16.h),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: _getProductCollection(),
+                // * NEW SECTION
+                HomeScreenTitle(
+                  title: 'New',
+                  onPressedViewAll: () {},
                 ),
-              ),
-              Gap(16.h),
-            ],
+                Gap(16.h),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: _getProductCollection(),
+                  ),
+                ),
+                Gap(16.h),
+              ],
+            ),
           ),
         ),
       ),
@@ -104,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> _getCollection() {
     List<Widget> collectionList = [];
     for (int i = 0; i < 5; i++) {
-      collectionList.add(const SingleCollectionWidget());
+      collectionList.add(SingleCollectionWidget());
     }
     return collectionList;
   }
