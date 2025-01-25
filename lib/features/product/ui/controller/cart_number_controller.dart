@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
 
-class CartNumberController extends GetxController{
-  final RxInt cartNum = 0.obs;
+class CartNumberController extends GetxController {
+  final RxInt cartNum = 1.obs;
 
-  void increment(){
+  void increment() {
     cartNum.value++;
   }
 
-  void decrement(){
+  void decrement() {
+    if (cartNum.value == 1) {
+      return;
+    }
     cartNum.value--;
   }
 }
