@@ -8,6 +8,7 @@ import 'package:ecommerce_project/features/category/ui/screens/category_page.dar
 import 'package:ecommerce_project/features/common/ui/screens/sullion_app_bottom_navbar.dart';
 import 'package:ecommerce_project/features/home/ui/screens/home_screen.dart';
 import 'package:ecommerce_project/features/product/ui/screen/product_list_screen.dart';
+import 'package:ecommerce_project/features/product/ui/screen/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -59,6 +60,11 @@ class _SullionAppState extends State<SullionApp> {
         final categoryName = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => ProductListScreen(categoryName: categoryName),
+        );
+      case ProductScreen.routeName:
+        final productId = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => ProductScreen(productId: productId),
         );
       default:
         return MaterialPageRoute(
