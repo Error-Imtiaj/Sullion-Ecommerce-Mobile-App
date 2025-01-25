@@ -53,6 +53,7 @@ class _SullionAppCarosalSliderState extends State<SullionAppCarosalSlider> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
                 for (int i = 0; i < 5; i++)
                   Container(
                     width: 10,

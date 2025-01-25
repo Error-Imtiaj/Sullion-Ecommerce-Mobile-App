@@ -77,7 +77,7 @@ class ProductWidget extends StatelessWidget {
                     Text(
                       "Perfume bottle with syrup",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold, fontSize: 11.sp),
+                          fontWeight: FontWeight.bold, fontSize: 13.sp),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
@@ -87,8 +87,11 @@ class ProductWidget extends StatelessWidget {
                       children: [
                         Text(
                           "\$100",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontSize: 10.sp, fontWeight: FontWeight.bold),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  fontSize: 11.sp, fontWeight: FontWeight.bold),
                         ),
                         Row(
                           children: [
@@ -103,7 +106,7 @@ class ProductWidget extends StatelessWidget {
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                      fontSize: 10.sp,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.bold),
                             ),
                           ],
