@@ -40,9 +40,9 @@ class _WisslistScreenState extends State<WisslistScreen> {
             itemCount: 16, // Replace with the actual item count
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
-              crossAxisSpacing: 15.w,
-              mainAxisSpacing: 15.h,
-              childAspectRatio: 0.8, // Adjust to control the height of items
+              crossAxisSpacing: 1.w,
+              mainAxisSpacing: 1.h,
+              childAspectRatio: 0.7, // Adjust to control the height of items
             ),
             // physics: const BouncingScrollPhysics(), // Adds smooth scrolling
             itemBuilder: (context, index) {
