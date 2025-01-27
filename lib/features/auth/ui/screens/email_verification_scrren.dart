@@ -1,7 +1,10 @@
 import 'package:ecommerce_project/app/app_constants.dart';
 import 'package:ecommerce_project/app/colors.dart';
+import 'package:ecommerce_project/features/auth/ui/controllers/email_verification_controller.dart';
 import 'package:ecommerce_project/features/auth/ui/screens/email_otp_verify.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_square_logo_widget.dart';
+import 'package:ecommerce_project/features/common/ui/widgets/center_circular_progress_indicatore.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -19,13 +22,16 @@ class EmailVerificationScreen extends StatefulWidget {
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final emailVerificationController = Get.find<EmailVerificationController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(SullionAppConstants.scaffoldBodyPaddingConst).w,
+          padding:
+              const EdgeInsets.all(SullionAppConstants.scaffoldBodyPaddingConst)
+                  .w,
           child: Form(
             key: formkey,
             child: Column(
@@ -52,29 +58,29 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     border: OutlineInputBorder(),
                   ),
                   validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return "Email is required";
-                    } else if (!value.contains('@')) {
-                      return "Invalid email address";
+                    if (EmailValidator.validate(value!)) {
+                      return null;
+                    } else {
+                      return "Please enter a valid email address";
                     }
-                    return null;
                   },
                 ),
                 Gap(15.h),
-                ElevatedButton(
-                  onPressed: () {
-                    if (formkey.currentState!.validate()) {
-                      _navigateToNextScreen();
-                    }
-                  },
-                  child: Text(
-                    "Next",
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: SullionAppColor.primaryBackgroundColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ),
+                GetBuilder<EmailVerificationController>(builder: (controller) {
+                  if (controller.inProgress) {
+                    return const CenterCircularProgressIndicatore();
+                  }
+                  return ElevatedButton(
+                    onPressed: _navigateToNextScreen,
+                    child: Text(
+                      "Next",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: SullionAppColor.primaryBackgroundColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  );
+                })
               ],
             ),
           ),
@@ -84,8 +90,21 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   }
 
   void _navigateToNextScreen() {
-    // * Navigate to the next screen
-    Get.toNamed(EmailOtpVerify.routeName);
+    if (!formkey.currentState!.validate()) {
+      return;
+    } else {
+      emailVerificationController
+          .verifyEmail(_emailController.text.trim())
+          .then((verificationSuccessful) {
+        if (verificationSuccessful) {
+          // * Navigate to the next screen only if verification is successful
+          Get.toNamed(EmailOtpVerify.routeName);
+        } else {
+          // * Handle verification failure, e.g., show an error message
+          Get.snackbar('Error', 'Email verification failed.');
+        }
+      });
+    }
   }
 
   @override

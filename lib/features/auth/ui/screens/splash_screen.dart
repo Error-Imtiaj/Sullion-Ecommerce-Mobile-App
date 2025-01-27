@@ -1,9 +1,8 @@
 import 'package:ecommerce_project/app/app_constants.dart';
 import 'package:ecommerce_project/app/colors.dart';
+import 'package:ecommerce_project/features/auth/ui/screens/email_verification_scrren.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_name_text_widget.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/app_square_logo_widget.dart';
-import 'package:ecommerce_project/features/common/ui/screens/sullion_app_bottom_navbar.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -22,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _navigateToNextScreen() async {
     await Future.delayed(
         const Duration(seconds: SullionAppConstants.splashScreenTimeoutInSecs));
-    Get.offNamed(SullionAppBottomNavbar.routeName);
+    Get.offNamed(EmailVerificationScreen.routeName);
   }
 
   @override
